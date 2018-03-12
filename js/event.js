@@ -8,7 +8,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
       var table = wrapper.getElementsByClassName('data')[0];
       var parser = new AssignmentParser(table.getElementsByTagName('td'));
-      parser.parse();
+
+      var rows = parser.parse();
+      console.log(rows);
     });
   });
 });

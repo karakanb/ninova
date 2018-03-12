@@ -10,8 +10,9 @@ export default class {
     var rowCount = this.rawRows.length;
     for (var i = 0; i < rowCount; i++) {
       var r = new Row(this.rawRows[i]);
-      var respo = r.parse();
-      console.log(respo);
+      this.rows.push(r.parse());
     }
+
+    return this.rows;
   }
 }
