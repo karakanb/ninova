@@ -13,11 +13,45 @@
       width: 250px;
       height: 400px;
     }
+
+    table,
+    td,
+    th {
+      border: 1px solid #ddd;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: 15px;
+    }
+
+    #table-wrapper {
+      position: relative;
+    }
+
+    #table-scroll {
+      overflow: auto;
+    }
+
+    #table-wrapper table {
+      width: 100%;
+    }
+
   </style>
 </head>
 
 <body>
-  <h3 style="font-weight:bold; text-align:center;">DOM Info</h3>
+  <h3 style="font-weight:bold; text-align:center;">Ödevler</h3>
+  <div id="table-wrapper">
+    <div id="table-scroll"></div>
+  </div>
 </body>
 
 </html>

@@ -1,16 +1,29 @@
-import AssignmentParser from './parse.js'
+import AssignmentParser from './parse.js';
+import ContentFiller from './ContentFiller.js';
 
 window.addEventListener('DOMContentLoaded', function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, function (info) {
-      var wrapper = document.createElement('div');
-      wrapper.innerHTML = info.document;
 
-      var table = wrapper.getElementsByClassName('data')[0];
-      var parser = new AssignmentParser(table.getElementsByTagName('td'));
+      let rows = [];
+      if (info.isNinova) {
 
-      var rows = parser.parse();
-      console.log(rows);
+        // Parse the wrapper content.
+        var wrapper = document.createElement('div');
+        wrapper.innerHTML = info.document;
+
+        // Retrieve the table and initiate the parser instance.
+        const table = wrapper.getElementsByClassName('data')[0];
+        const parser = new AssignmentParser(table.getElementsByTagName('td'));
+
+        // Parse the assignment rows.
+        rows = parser.parse();
+      }
+
+      // Fill the popup page with retrieved content.
+      const filler = new ContentFiller(document, rows);
+      filler.fill();
+
     });
   });
 });
