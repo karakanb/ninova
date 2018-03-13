@@ -1,5 +1,20 @@
 import AssignmentParser from './parse.js';
 import ContentFiller from './ContentFiller.js';
+import Database from './Database.js';
+
+/**
+ * 
+ * @param {array} array 
+ * @param {string} key 
+ */
+const keyBy = (array, key) => {
+  const keyedObject = {}
+  for (const item of array) {
+    keyedObject[item[key]] = array;
+  }
+
+  return keyedObject;
+}
 
 const runParser = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -18,6 +33,13 @@ const runParser = () => {
 
         // Parse the assignment rows.
         rows = parser.parse();
+
+        // Set the key-value pairs for each of the homeworks.
+        const db = new Database(rows);
+        for (const row of rows) {
+          console.log('setting key: ' + row.assignmentLink);
+          db.set(row.assignmentLink, row, () => { });
+        }
       }
 
       // Fill the popup page with retrieved content.
