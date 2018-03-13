@@ -28,7 +28,6 @@ const runParser = () => {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  runParser();
   const button = document.getElementById('update-button');
   button.addEventListener('click', runParser);
 });

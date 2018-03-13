@@ -56,6 +56,24 @@
     #header-wrapper {
       padding: 10px;
     }
+
+    #no-data {
+      text-align: center;
+      font-size: 24px;
+      margin: auto;
+      margin-top: 100px;
+      font-weight: bold;
+      color: rgb(172, 172, 172);
+    }
+
+    #no-data #small-info {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .hide {
+      display: none;
+    }
   </style>
 </head>
 
@@ -65,10 +83,15 @@
     <h3 id="title">Ödevler</h3>
     <button id="update-button">Güncelle</button>
   </div>
-  <div class="no-data">
-    Herhangi bir data bulunmamaktadır.
+  <div id="no-data">
+    <div id="main-info">
+      Şu an herhangi bir hatırlatıcı bulunmuyor.
+    </div>
+    <div id="small-info">
+      Ödev listeni güncellemek istiyorsan yukarıdaki "Güncelle" butonuna basabilirsin, ama sen bilirsin.
+    </div>
   </div>
-  <div class="hide" id="table-wrapper">
+  <div id="table-wrapper">
     <div id="table-scroll"></div>
   </div>
 </body>

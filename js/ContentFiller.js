@@ -14,6 +14,23 @@ export default class {
     }
   }
 
+  hasClass(element, cls) {
+    return element.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+  }
+
+  removeClass(element, cls) {
+    if (this.hasClass(element, cls)) {
+      var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+      element.className = element.className.replace(reg, ' ');
+    }
+  }
+
+  addClass(element, cls) {
+    if (!this.hasClass(element, cls)) {
+      element.className += ` ${cls}`;
+    }
+  }
+
   createRow(row) {
     const tr = this.document.createElement('tr');
     for (let property in row) {
@@ -25,19 +42,19 @@ export default class {
     return tr;
   }
 
-  createErrorDiv() {
-    this.removeItem(this.errorParagraphId);
-    const p = this.document.createElement('p');
-    p.setAttribute('id', this.errorParagraphId);
-    p.textContent = "Eklenti sadece Ninova'da 'Ödevler' sayfasında çalışır.";
-    return p;
-  }
-
   fill() {
     const body = this.document.getElementById('table-scroll');
+    const wrapper = this.document.getElementById('table-wrapper');
+    const noData = this.document.getElementById('no-data');
+
     if (this.rows.length == 0) {
-      body.appendChild(this.createErrorDiv());
+      this.removeClass(noData, 'hide');
+      this.addClass(wrapper, 'hide');
+    } else {
+      this.addClass(noData, 'hide');
+      this.removeClass(wrapper, 'hide');
     }
+
 
     var table = this.document.createElement('table');
     table.setAttribute("id", this.tableId);
