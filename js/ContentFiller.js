@@ -2,6 +2,16 @@ export default class {
   constructor(document, rows) {
     this.document = document;
     this.rows = rows;
+    this.tableId = 'class-list';
+    this.errorParagraphId = 'error-message';
+    this.removeItem(this.tableId);
+  }
+
+  removeItem(id) {
+    var element = document.getElementById(id);
+    if (element) {
+      element.parentNode.removeChild(element);
+    }
   }
 
   createRow(row) {
@@ -16,7 +26,9 @@ export default class {
   }
 
   createErrorDiv() {
+    this.removeItem(this.errorParagraphId);
     const p = this.document.createElement('p');
+    p.setAttribute('id', this.errorParagraphId);
     p.textContent = "Eklenti sadece Ninova'da 'Ödevler' sayfasında çalışır.";
     return p;
   }
@@ -28,6 +40,8 @@ export default class {
     }
 
     var table = this.document.createElement('table');
+    table.setAttribute("id", this.tableId);
+
     for (let rowIndex = 0; rowIndex < this.rows.length; rowIndex++) {
       const row = this.rows[rowIndex];
       const tr = this.createRow(row);

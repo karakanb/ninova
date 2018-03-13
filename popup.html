@@ -44,12 +44,31 @@
       width: 100%;
     }
 
+    #title {
+      display: inline-block;
+      margin: 0;
+    }
+
+    #update-button {
+      float: right;
+    }
+
+    #header-wrapper {
+      padding: 10px;
+    }
   </style>
 </head>
 
 <body>
-  <h3 style="font-weight:bold; text-align:center;">Ödevler</h3>
-  <div id="table-wrapper">
+
+  <div id="header-wrapper">
+    <h3 id="title">Ödevler</h3>
+    <button id="update-button">Güncelle</button>
+  </div>
+  <div class="no-data">
+    Herhangi bir data bulunmamaktadır.
+  </div>
+  <div class="hide" id="table-wrapper">
     <div id="table-scroll"></div>
   </div>
 </body>

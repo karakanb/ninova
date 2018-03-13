@@ -1,22 +1,28 @@
 // Inform the background page that 
 // this tab should have a page-action
-chrome.runtime.sendMessage({
-  from: 'content',
-  subject: 'showPageAction'
-});
+const loc = location.href;
+const isNinova = loc.includes('ninova.itu.edu.tr') && loc.endsWith('Odevler');
+
+if (isNinova) {
+  chrome.runtime.sendMessage({
+    from: 'content',
+    subject: 'showPageAction'
+  });
+}
 
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener(function (msg, sender, response) {
+  var domInfo = {
+    document: '',
+    isNinova: false
+  };
+
   if ((msg.from === 'popup') && (msg.subject === 'DOMInfo')) {
-
-    // Perform an 'isNinova' check to prevent script from executing and failing.
-    const loc = location.href;
-    var domInfo = {
+    domInfo = {
       document: document.documentElement.innerHTML,
-      isNinova: loc.includes('ninova.itu.edu.tr') && loc.endsWith('Odevler')
+      isNinova: isNinova
     };
-
-    // Return the sender with the callback.
-    response(domInfo);
   }
+  // Return the sender with the callback.
+  response(domInfo);
 });

@@ -1,7 +1,7 @@
 import AssignmentParser from './parse.js';
 import ContentFiller from './ContentFiller.js';
 
-window.addEventListener('DOMContentLoaded', function () {
+const runParser = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, function (info) {
 
@@ -23,7 +23,12 @@ window.addEventListener('DOMContentLoaded', function () {
       // Fill the popup page with retrieved content.
       const filler = new ContentFiller(document, rows);
       filler.fill();
-
     });
   });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  runParser();
+  const button = document.getElementById('update-button');
+  button.addEventListener('click', runParser);
 });
