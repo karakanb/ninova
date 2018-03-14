@@ -1,5 +1,5 @@
 export default class {
-  constructor(assignments) {
+  constructor(assignments = []) {
     this.assignments = assignments;
     this.keys = this.getKeys();
   }
@@ -17,9 +17,20 @@ export default class {
     chrome.storage.sync.get([key], callback);
   }
 
-  set(key, value, callback) {
+  getAll(callback) {
+    chrome.storage.sync.get(null, callback);
+  }
+
+  set(key, value, callback = () => { }) {
     const storedObj = {};
     storedObj[key] = value;
     chrome.storage.sync.set(storedObj, callback);
+  }
+
+  removeAll() {
+    this.getAll((rows) => {
+      const keys = Object.keys(rows);
+      chrome.storage.sync.remove(keys);
+    })
   }
 }

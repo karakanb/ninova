@@ -1,21 +1,22 @@
 import AssignmentParser from './parse.js';
 import ContentFiller from './ContentFiller.js';
 import Database from './Database.js';
+import DbSync from './Utility/DbSync.js';
 
 /**
- * 
- * @param {array} array 
- * @param {string} key 
+ * Fill the existing assignments saved on the local storage to the popup window.
  */
-const keyBy = (array, key) => {
-  const keyedObject = {}
-  for (const item of array) {
-    keyedObject[item[key]] = array;
-  }
-
-  return keyedObject;
+const fillExistingAssignments = () => {
+  const db = new Database();
+  db.getAll((rows) => {
+    const filler = new ContentFiller(document, Object.values(rows));
+    filler.fill();
+  });
 }
 
+/**
+ * Run the parser by querying the content script with the current tab.
+ */
 const runParser = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, function (info) {
@@ -36,20 +37,17 @@ const runParser = () => {
 
         // Set the key-value pairs for each of the homeworks.
         const db = new Database(rows);
-        for (const row of rows) {
-          console.log('setting key: ' + row.assignmentLink);
-          db.set(row.assignmentLink, row, () => { });
-        }
+        const dbSync = new DbSync(db);
+        dbSync.sync(rows);
       }
 
-      // Fill the popup page with retrieved content.
-      const filler = new ContentFiller(document, rows);
-      filler.fill();
+      fillExistingAssignments();
     });
   });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  fillExistingAssignments();
   const button = document.getElementById('update-button');
   button.addEventListener('click', runParser);
 });

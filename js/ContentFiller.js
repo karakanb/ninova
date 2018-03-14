@@ -2,6 +2,8 @@ export default class {
   constructor(document, rows) {
     this.document = document;
     this.rows = rows;
+    console.log('initiate filler.');
+    console.log(this.rows);
     this.tableId = 'class-list';
     this.errorParagraphId = 'error-message';
     this.removeItem(this.tableId);
