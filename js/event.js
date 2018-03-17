@@ -3,13 +3,15 @@ import ContentFiller from './ContentFiller.js';
 import Database from './Database.js';
 import DbSync from './Utility/DbSync.js';
 
+const ninovaUrl = 'http://ninova.itu.edu.tr';
+
 /**
  * Fill the existing assignments saved on the local storage to the popup window.
  */
 const fillExistingAssignments = () => {
   const db = new Database();
   db.getAll((rows) => {
-    const filler = new ContentFiller(document, Object.values(rows));
+    const filler = new ContentFiller(document, ninovaUrl, Object.values(rows));
     filler.fill();
   });
 }
@@ -50,4 +52,10 @@ window.addEventListener('DOMContentLoaded', () => {
   fillExistingAssignments();
   const button = document.getElementById('update-button');
   button.addEventListener('click', runParser);
+
+  window.addEventListener('click', function (e) {
+    if (e.target.href !== undefined) {
+      chrome.tabs.create({ url: e.target.href })
+    }
+  })
 });
