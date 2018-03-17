@@ -9,8 +9,21 @@
 
   <script type="module" src="js/event.js"></script>
   <link rel="stylesheet" href="css/simple-grid.css">
+  <link rel="stylesheet" href="css/tooltip.css">
 
   <style>
+    /* `border-box`... ALL THE THINGS! */
+
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
     body {
       width: 350px;
       height: 400px;
@@ -41,7 +54,6 @@
     }
 
     #table-scroll {
-      overflow: auto;
       width: 100%;
     }
 
@@ -111,6 +123,7 @@
       font-weight: 600;
       padding: 4px 0;
       font-size: 15px;
+      overflow: auto;
     }
 
     .assignment-name a {
@@ -189,7 +202,7 @@
     <a href="#"></a>
     <button class="btn" id="update-button">Güncelle</button>
   </header>
-  <div id="no-data">
+  <div id="no-data" style="padding: 10px;">
     <div id="main-info">
       Şu an herhangi bir hatırlatıcı bulunmuyor.
     </div>

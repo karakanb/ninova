@@ -59,12 +59,16 @@ export default class {
 
     // Create left side lesson divs.
     const lessonDiv = this.createTruncateDiv(lesson);
+    
     const lessonCol = this.newCol(7);
+    lessonCol.setAttribute('data-tooltip', lesson);
     lessonCol.appendChild(lessonDiv);
 
     // Create right-side class name divs.
     const classDiv = this.createTruncateDiv(className);
+    
     const classCol = this.newCol(5);
+    classCol.setAttribute('data-tooltip', className);
     classCol.classList.add('text-right', 'pull-right');
     classCol.appendChild(classDiv);
 
@@ -115,7 +119,7 @@ export default class {
     startCol.appendChild(startDateDiv);
 
     const endDateDiv = this.newDiv('date');
-    endDateDiv.textContent = startDate;
+    endDateDiv.textContent = endDate;
     const endCol = this.newCol(6);
     endCol.classList.add('pull-right', 'text-right');
     endCol.appendChild(endDateDiv);
