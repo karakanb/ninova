@@ -26,10 +26,11 @@ const updateButtonState = () => {
       button.disabled = !info.isNinova;
       if (info.isNinova) {
         button.addEventListener('click', runParser);
-        button.textContent = "Güncelle"
+        button.textContent = "Update"
       } else {
+        const message = 'Data can be updated only on Ninova Assignments page.'
         button.classList.add('tooltip-bottom');
-        button.setAttribute('data-tooltip', 'Yalnızca Ninova Ödevler sayfasında güncelleme yapılabilir.');
+        button.setAttribute('data-tooltip', message);
       }
     });
   });

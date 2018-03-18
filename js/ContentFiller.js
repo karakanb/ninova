@@ -55,12 +55,15 @@ export default class {
     return div;
   }
 
-  createInfoRow(lesson, className) {
+  createInfoRow(index, lesson, className) {
 
     // Create left side lesson divs.
     const lessonDiv = this.createTruncateDiv(lesson);
 
     const lessonCol = this.newCol(7);
+    if(index == 0) {
+      lessonCol.classList.add('tooltip-bottom');      
+    }
     lessonCol.setAttribute('data-tooltip', lesson);
     lessonCol.appendChild(lessonDiv);
 
@@ -68,6 +71,9 @@ export default class {
     const classDiv = this.createTruncateDiv(className);
 
     const classCol = this.newCol(5);
+    if(index == 0) {
+      classCol.classList.add('tooltip-bottom');      
+    }
     classCol.setAttribute('data-tooltip', className);
     classCol.classList.add('text-right', 'pull-right');
     classCol.appendChild(classDiv);
@@ -81,8 +87,8 @@ export default class {
     return infoRow;
   }
 
-  createClassRow(item) {
-    const infoRow = this.createInfoRow(item.lesson, item.class);
+  createClassRow(index, item) {
+    const infoRow = this.createInfoRow(index, item.lesson, item.class);
     const assignmentRow = this.createAssignmentRow(item.assignmentName, item.assignmentLink);
     const dateRow = this.createDateRow(item.startDate, item.endDate);
 
@@ -143,8 +149,8 @@ export default class {
       this.removeClass(body, 'hide');
     }
 
-    for (const assignment of this.rows) {
-      const classRow = this.createClassRow(assignment);
+    for (const [index, assignment] of this.rows.entries()) {
+      const classRow = this.createClassRow(index, assignment);
       body.appendChild(classRow);
     }
   }
