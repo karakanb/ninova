@@ -59,14 +59,14 @@ export default class {
 
     // Create left side lesson divs.
     const lessonDiv = this.createTruncateDiv(lesson);
-    
+
     const lessonCol = this.newCol(7);
     lessonCol.setAttribute('data-tooltip', lesson);
     lessonCol.appendChild(lessonDiv);
 
     // Create right-side class name divs.
     const classDiv = this.createTruncateDiv(className);
-    
+
     const classCol = this.newCol(5);
     classCol.setAttribute('data-tooltip', className);
     classCol.classList.add('text-right', 'pull-right');
@@ -133,18 +133,17 @@ export default class {
   }
 
   fill() {
-    const wrapper = this.document.getElementById('table-wrapper');
+    const body = this.document.getElementById('table-scroll');
     const noData = this.document.getElementById('no-data');
 
     if (this.rows.length == 0) {
       this.removeClass(noData, 'hide');
-      this.addClass(wrapper, 'hide');
+      this.addClass(body, 'hide');
     } else {
       this.addClass(noData, 'hide');
-      this.removeClass(wrapper, 'hide');
+      this.removeClass(body, 'hide');
     }
 
-    const body = this.document.getElementById('table-scroll');
     for (const assignment of this.rows) {
       const classRow = this.createClassRow(assignment);
       body.appendChild(classRow);

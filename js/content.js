@@ -3,13 +3,6 @@
 const loc = location.href;
 const isNinova = loc.includes('ninova.itu.edu.tr') && loc.endsWith('Odevler');
 
-if (isNinova) {
-  chrome.runtime.sendMessage({
-    from: 'content',
-    subject: 'showPageAction'
-  });
-}
-
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener(function (msg, sender, response) {
   var domInfo = {

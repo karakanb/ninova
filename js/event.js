@@ -19,6 +19,25 @@ const fillExistingAssignments = () => {
 /**
  * Run the parser by querying the content script with the current tab.
  */
+const updateButtonState = () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, function (info) {
+      const button = document.getElementById('update-button');
+      button.disabled = !info.isNinova;
+      if (info.isNinova) {
+        button.addEventListener('click', runParser);
+        button.textContent = "Güncelle"
+      } else {
+        button.classList.add('tooltip-bottom');
+        button.setAttribute('data-tooltip', 'Yalnızca Ninova Ödevler sayfasında güncelleme yapılabilir.');
+      }
+    });
+  });
+}
+
+/**
+ * Run the parser by querying the content script with the current tab.
+ */
 const runParser = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, function (info) {
@@ -50,9 +69,7 @@ const runParser = () => {
 
 window.addEventListener('DOMContentLoaded', () => {
   fillExistingAssignments();
-  const button = document.getElementById('update-button');
-  button.addEventListener('click', runParser);
-
+  updateButtonState();
   window.addEventListener('click', function (e) {
     if (e.target.href !== undefined) {
       chrome.tabs.create({ url: e.target.href })
