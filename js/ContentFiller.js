@@ -115,19 +115,18 @@ export default class {
   createDateRow(startDate, endDate) {
     const startDateDiv = this.newDiv('date');
     startDateDiv.textContent = startDate;
-    const startCol = this.newCol(6);
-    startCol.appendChild(startDateDiv);
 
     const endDateDiv = this.newDiv('date');
     endDateDiv.textContent = endDate;
-    const endCol = this.newCol(6);
-    endCol.classList.add('pull-right', 'text-right');
-    endCol.appendChild(endDateDiv);
+
+    const dateSeperator = this.newDiv('date-seperator');
+    dateSeperator.textContent = ' - ';
 
     const row = this.newDiv('row');
     row.classList.add('text-sm', 'date-row');
-    row.appendChild(startCol);
-    row.appendChild(endCol);
+    row.appendChild(startDateDiv);
+    row.appendChild(dateSeperator);
+    row.appendChild(endDateDiv);
 
     return row;
   }
