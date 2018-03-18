@@ -28,7 +28,7 @@ const updateButtonState = () => {
         button.addEventListener('click', runParser);
         button.textContent = "Update"
       } else {
-        const message = 'Data can be updated only on Ninova Assignments page.'
+        const message = 'Assignment list can be updated only on Ninova Assignments page.'
         button.classList.add('tooltip-bottom');
         button.setAttribute('data-tooltip', message);
       }

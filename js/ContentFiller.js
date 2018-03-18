@@ -16,10 +16,6 @@ export default class {
     }
   }
 
-  hasClass(element, cls) {
-    return element.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-  }
-
   removeClass(element, cls) {
     element.classList.remove(cls);
   }
@@ -61,8 +57,8 @@ export default class {
     const lessonDiv = this.createTruncateDiv(lesson);
 
     const lessonCol = this.newCol(7);
-    if(index == 0) {
-      lessonCol.classList.add('tooltip-bottom');      
+    if (index == 0) {
+      lessonCol.classList.add('tooltip-bottom');
     }
     lessonCol.setAttribute('data-tooltip', lesson);
     lessonCol.appendChild(lessonDiv);
@@ -71,8 +67,8 @@ export default class {
     const classDiv = this.createTruncateDiv(className);
 
     const classCol = this.newCol(5);
-    if(index == 0) {
-      classCol.classList.add('tooltip-bottom');      
+    if (index == 0) {
+      classCol.classList.add('tooltip-bottom');
     }
     classCol.setAttribute('data-tooltip', className);
     classCol.classList.add('text-right', 'pull-right');

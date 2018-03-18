@@ -43,9 +43,11 @@
       text-align: center;
       font-size: 24px;
       margin: auto;
-      margin-top: 100px;
+      height: 223px;
       font-weight: bold;
       color: rgb(172, 172, 172);
+      display: flex;
+      align-items: center;
     }
 
     #no-data #small-info {
@@ -54,7 +56,7 @@
     }
 
     .hide {
-      display: none;
+      display: none !important;
     }
 
     .truncate {
@@ -199,6 +201,11 @@
       margin: 5px 0px;
       font-size: 10px;
       color: #555857;
+      text-align: center;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -214,17 +221,19 @@
   </header>
   <div class="content" style="padding: 0px 10px;">
     <div id="no-data">
-      <div id="main-info">
-        Şu an herhangi bir hatırlatıcı bulunmuyor.
-      </div>
-      <div id="small-info">
-        Ödev listeni güncellemek istiyorsan yukarıdaki "Güncelle" butonuna basabilirsin, ama sen bilirsin.
+      <div id="no-data-text">
+        <div id="main-info">
+          You have no assignments.
+        </div>
+        <div id="small-info">
+          You don't have to trust me though, you can always update the list by clicking "Update" button above.
+        </div>
       </div>
     </div>
     <div id="table-scroll"></div>
 
     <footer>
-      <a href="https://github.com/karakanb/ninova">Completely open source ♥</a>
+      <a href="https://github.com/karakanb/ninova">Completely open source</a> ♥
     </footer>
   </div>
 </body>
