@@ -10,6 +10,7 @@
   <script type="module" src="js/event.js"></script>
   <link rel="stylesheet" href="css/simple-grid.css">
   <link rel="stylesheet" href="css/directional-tooltip.css">
+  <link rel="stylesheet" href="css/icon-font.css">
 
   <style>
     html {
@@ -33,6 +34,7 @@
       font-weight: 300;
       color: #555857;
       font-size: 17px;
+      margin-left: 5px;
     }
 
     #update-button {
@@ -207,13 +209,21 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    #title-wrapper {
+      display: flex;
+      align-items: center;
+    }
   </style>
 </head>
 
 <body>
 
   <header id="header-wrapper">
-    <h3 id="title">Saved Assignments</h3>
+    <div id="title-wrapper">
+      <i class="material-icons">assignment</i>
+      <h3 id="title"> Assignments</h3>
+    </div>
     <a href="#"></a>
     <button class="btn" id="update-button" disabled>
       No update available.
