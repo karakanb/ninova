@@ -26,8 +26,9 @@ const updateButtonState = () => {
       button.disabled = !info.isNinova;
       if (info.isNinova) {
         button.addEventListener('click', runParser);
-        button.textContent = "Update"
+        button.innerHTML = '<i class="material-icons">update</i> Update'
       } else {
+
         const message = 'Assignment list can be updated only on Ninova Assignments page.'
         button.classList.add('tooltip-bottom');
         button.setAttribute('data-tooltip', message);

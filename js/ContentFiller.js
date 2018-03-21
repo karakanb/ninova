@@ -44,6 +44,14 @@ export default class {
     return a;
   }
 
+  newIcon(iconName) {
+    var i = this.document.createElement('i');
+    i.classList.add('material-icons');
+    i.textContent = iconName;
+
+    return i;
+  }
+
   createTruncateDiv(lesson) {
     var div = this.newDiv('truncate');
     div.title = lesson;
@@ -115,6 +123,9 @@ export default class {
   }
 
   createDateRow(startDate, endDate) {
+    const icon = this.newIcon('timer');
+    icon.classList.add('date-row-icon');
+
     const startDateDiv = this.newDiv('date');
     startDateDiv.textContent = startDate;
 
@@ -126,6 +137,7 @@ export default class {
 
     const row = this.newDiv('row');
     row.classList.add('text-sm', 'date-row');
+    row.appendChild(icon);
     row.appendChild(startDateDiv);
     row.appendChild(dateSeperator);
     row.appendChild(endDateDiv);
