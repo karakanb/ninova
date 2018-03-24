@@ -42,6 +42,8 @@ export default class extends BaseDomComponent {
   }
 
   listener(event) {
+    const self = this;
+
     const target = event.target;
     const keyLink = target.dataset.key;
 
@@ -52,6 +54,15 @@ export default class extends BaseDomComponent {
       // Remove the wrapper row.
       const wrapperElement = document.querySelectorAll(`.class-row[data-key='${keyLink}']`)[0];
       wrapperElement.parentNode.removeChild(wrapperElement);
+
+      db.getAll((rows) => {
+        if (Object.keys(rows).length === 0 && rows.constructor === Object) {
+          const body = document.getElementById('table-scroll');
+          const noData = document.getElementById('no-data');
+          noData.classList.remove('hide');
+          body.classList.add('hide');
+        }
+      })
     });
   }
 }
