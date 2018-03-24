@@ -10,7 +10,7 @@
   <script type="module" src="js/event.js"></script>
   <link rel="stylesheet" href="css/simple-grid.css">
   <link rel="stylesheet" href="css/directional-tooltip.css">
-  <link rel="stylesheet" href="css/icon-font.css">
+  <link rel="stylesheet" href="css/fontawesome-all.min.css">
 
   <style>
     html {
@@ -229,7 +229,7 @@
       cursor: default;
     }
 
-    footer a:hover ~ #footer-icon {
+    footer a:hover~#footer-icon {
       color: red;
       cursor: default;
     }
@@ -244,11 +244,12 @@
     }
 
     .date-row-icon {
-      font-size: 15px;
-      margin-right: 3px !important;
+      font-size: 12px;
     }
 
-    .material-icons {
+    .fas,
+    .far {
+      color: gray;
       margin-right: 5px;
     }
   </style>
@@ -258,7 +259,7 @@
 
   <header id="header-wrapper">
     <div id="title-wrapper">
-      <i class="material-icons">assignment</i>
+      <i class="fas fa-tasks"></i>
       <h3 id="title"> Assignments</h3>
     </div>
     <a href="#"></a>
