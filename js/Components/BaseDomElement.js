@@ -6,6 +6,13 @@ export default class {
     this.icon = new Icon(document);
   }
 
+  removeItem(id) {
+    var myNode = document.getElementById(id);
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.firstChild);
+    }
+  }
+
   removeClass(element, cls) {
     element.classList.remove(cls);
   }

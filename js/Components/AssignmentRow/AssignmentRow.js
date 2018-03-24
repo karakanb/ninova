@@ -9,9 +9,7 @@ export default class extends BaseDomElement {
     this.index = index;
     this.assignment = assignment;
 
-    console.log(this.assignment);
-
-    this.infoRow = new InfoRow(document, this.index, this.assignment.lesson, this.assignment.className);
+    this.infoRow = new InfoRow(document, this.index, this.assignment.lesson, this.assignment.class);
     this.nameRow = new NameRow(document, this.assignment.assignmentName, this.assignment.assignmentLink);
     this.dateRow = new DateRow(document, this.assignment.startDate, this.assignment.endDate);
   }

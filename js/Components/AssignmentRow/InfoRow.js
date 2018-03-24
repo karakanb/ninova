@@ -14,23 +14,18 @@ export default class extends BaseDomComponent {
     // Create left side lesson divs.
     const lessonDiv = this.createTruncateDiv(this.lesson);
 
-    const lessonCol = this.newCol(7);
+    const lessonCol = this.newCol(11);
     if (this.index == 0) {
       lessonCol.classList.add('tooltip-bottom');
     }
     lessonCol.setAttribute('data-tooltip', this.lesson);
     lessonCol.appendChild(lessonDiv);
 
-    // Create right-side class name divs.
-    const classDiv = this.createTruncateDiv(this.className);
-
-    const classCol = this.newCol(5);
-    if (this.index == 0) {
-      classCol.classList.add('tooltip-bottom');
-    }
-    classCol.setAttribute('data-tooltip', this.className);
+    const classCol = this.newCol(1);
     classCol.classList.add('text-right', 'pull-right');
-    classCol.appendChild(classDiv);
+    const icon = this.icon.solid('times');
+    icon.classList.add('remove-icon');
+    classCol.appendChild(icon);
 
     // Add both of the class and lesson names to the single row.
     const infoRow = this.newDiv('row');
