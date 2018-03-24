@@ -27,6 +27,10 @@ export default class {
     chrome.storage.sync.set(storedObj, callback);
   }
 
+  remove(key, callback = () => { }) {
+    chrome.storage.sync.remove(key, callback);
+  }
+
   removeAll() {
     this.getAll((rows) => {
       const keys = Object.keys(rows);

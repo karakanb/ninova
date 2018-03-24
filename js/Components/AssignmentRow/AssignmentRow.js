@@ -9,20 +9,18 @@ export default class extends BaseDomElement {
     this.index = index;
     this.assignment = assignment;
 
-    this.infoRow = new InfoRow(document, this.index, this.assignment.lesson, this.assignment.class);
-    this.nameRow = new NameRow(document, this.assignment.assignmentName, this.assignment.assignmentLink);
-    this.dateRow = new DateRow(document, this.assignment.startDate, this.assignment.endDate);
+    this.infoRow = new InfoRow(document, index, assignment.lesson, assignment.assignmentLink);
+    this.nameRow = new NameRow(document, assignment.assignmentName, assignment.assignmentLink);
+    this.dateRow = new DateRow(document, assignment.startDate, assignment.endDate);
   }
 
   render() {
-    const container = this.newDiv('container');
+    const container = this.newDiv('class-row');
     container.appendChild(this.infoRow.render());
     container.appendChild(this.nameRow.render());
     container.appendChild(this.dateRow.render());
+    container.setAttribute('data-key', this.assignment.assignmentLink);
 
-    const classRow = this.newDiv('class-row');
-    classRow.appendChild(container);
-
-    return classRow;
+    return container;
   }
 }

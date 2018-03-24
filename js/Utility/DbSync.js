@@ -12,10 +12,11 @@ export default class {
   /**
    * Sync the given rows with the existing ones.
    * @param {Object[]} updatedRows 
+   * @param {function} callback 
   */
-  sync(updatedRows) {
+  sync(updatedRows, callback = () => { }) {
     this.db.getAll((allRows) => {
-      this.__syncGiven(allRows, updatedRows);
+      this.__syncGiven(allRows, updatedRows, callback);
     });
   }
 
@@ -23,11 +24,12 @@ export default class {
    * 
    * @param {Object[]} existingRows 
    * @param {Object[]} updatedRows 
+   * @param {function} callback 
    */
-  __syncGiven(existingRows, updatedRows) {
+  __syncGiven(existingRows, updatedRows, callback = () => { }) {
     for (const row of updatedRows) {
       if (!existingRows.hasOwnProperty(updatedRows.assignmentLink)) {
-        this.db.set(row.assignmentLink, row);
+        this.db.set(row.assignmentLink, row, callback);
       }
     }
   }

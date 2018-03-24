@@ -26,7 +26,7 @@ const updateButtonState = () => {
       button.disabled = !info.isNinova;
       if (info.isNinova) {
         button.addEventListener('click', runParser);
-        button.innerHTML = '<i class="material-icons">update</i> Update'
+        button.innerHTML = '<i class="fas fa-sync-alt"></i> Update'
       } else {
 
         const message = 'Assignment list can be updated only on Ninova Assignments page.'
@@ -61,7 +61,7 @@ const runParser = () => {
         // Set the key-value pairs for each of the homeworks.
         const db = new Database(rows);
         const dbSync = new DbSync(db);
-        dbSync.sync(rows);
+        dbSync.sync(rows, fillExistingAssignments);
       }
 
       fillExistingAssignments();
