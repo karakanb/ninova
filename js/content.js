@@ -1,6 +1,4 @@
-// Inform the background page that 
-// this tab should have a page-action
-const loc = location.href;
+const loc = location.href || '';
 const isNinova = loc.includes('ninova.itu.edu.tr') && loc.endsWith('Odevler');
 
 // Listen for messages from the popup
