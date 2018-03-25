@@ -13,6 +13,12 @@ export default class {
     }
   }
 
+  removeAllChildren(item) {
+    while (item.firstChild) {
+      item.removeChild(item.firstChild);
+    }
+  }
+
   removeClass(element, cls) {
     element.classList.remove(cls);
   }
@@ -25,6 +31,12 @@ export default class {
     var div = this.document.createElement('div');
     div.classList.add(itemClass);
     return div;
+  }
+
+  newButton(itemClass = '') {
+    var button = this.document.createElement('button');
+    button.classList.add(itemClass);
+    return button;
   }
 
   newCol(width = 6) {
