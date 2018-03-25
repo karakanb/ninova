@@ -20,11 +20,11 @@ export default class {
     const noData = this.document.getElementById('no-data');
 
     if (this.rows.length == 0) {
-      this.dom.removeClass(noData, 'hide');
-      this.dom.addClass(body, 'hide');
+      noData.classList.remove('hide');
+      body.classList.add('hide');
     } else {
-      this.dom.addClass(noData, 'hide');
-      this.dom.removeClass(body, 'hide');
+      noData.classList.add('hide');
+      body.classList.remove('hide');
     }
 
     for (const [index, assignment] of this.rows.entries()) {

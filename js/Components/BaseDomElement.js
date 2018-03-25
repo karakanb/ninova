@@ -6,6 +6,10 @@ export default class {
     this.icon = new Icon(document);
   }
 
+  /**
+   * Remove an item, specified by its ID.
+   * @param {string} id 
+   */
   removeItem(id) {
     var myNode = document.getElementById(id);
     while (myNode.firstChild) {
@@ -13,37 +17,51 @@ export default class {
     }
   }
 
+  /**
+   * Remove all children of the given HTML element.
+   * @param {HTMLElement} item 
+   */
   removeAllChildren(item) {
     while (item.firstChild) {
       item.removeChild(item.firstChild);
     }
   }
 
-  removeClass(element, cls) {
-    element.classList.remove(cls);
-  }
-
-  addClass(element, cls) {
-    element.classList.add(cls);
-  }
-
+  /**
+   * Creates a new div with the given class.
+   * @param {string} itemClass 
+   */
   newDiv(itemClass = '') {
     var div = this.document.createElement('div');
     div.classList.add(itemClass);
     return div;
   }
 
+  /**
+   * Creates a new button with the given class.
+   * @param {string} itemClass 
+   */
   newButton(itemClass = '') {
     var button = this.document.createElement('button');
     button.classList.add(itemClass);
     return button;
   }
 
+  /**
+   * Creates a new column with the given width.
+   * @param {int} width 
+   */
   newCol(width = 6) {
     var div = this.newDiv(`col-${width}`);
     return div;
   }
 
+  /**
+   * Creates a new link with the given class name, href and content values.
+   * @param {string} className 
+   * @param {string} href 
+   * @param {string} content 
+   */
   newLink(className, href, content) {
     var a = this.document.createElement('a');
     a.classList.add(className);
@@ -53,10 +71,14 @@ export default class {
     return a;
   }
 
-  createTruncateDiv(lesson) {
+  /**
+   * Creates a new div that truncates the contents if overflow occurs.
+   * @param {string} content 
+   */
+  createTruncateDiv(content) {
     var div = this.newDiv('truncate');
-    div.title = lesson;
-    div.textContent = lesson;
+    div.title = content;
+    div.textContent = content;
     return div;
   }
 }
