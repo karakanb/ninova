@@ -1,5 +1,6 @@
 import BaseDomElement from "../BaseDomElement.js";
 import Database from "../../Database.js";
+import ReminderSetter from "../../Utility/ReminderSetter.js";
 
 export default class extends BaseDomElement {
   constructor(document, startDate, endDate) {
@@ -39,7 +40,7 @@ export default class extends BaseDomElement {
    */
   renderSetterButton() {
     const button = this._buttonRenderer(true);
-    button.classList.add('set-reminder', 'pulse');    
+    button.classList.add('set-reminder', 'pulse');
     return button;
   }
 
@@ -82,8 +83,14 @@ export default class extends BaseDomElement {
     targetParent.replaceChild(newButton, target);
 
     this.db.get(this.assignmentLink, (assignment) => {
-      const reminder = new ReminderSetter(Object.values(assignment)[0]);
+      const assignmentInstance = Object.values(assignment)[0];
+      const reminder = new ReminderSetter(assignmentInstance);
       reminder.set();
+
+      assignmentInstance.reminderSet = true;
+      const db = new Database();
+      db.set(assignmentInstance.assignmentLink, assignmentInstance);
+      console.log(assignmentInstance);
     })
   }
 
@@ -99,7 +106,7 @@ export default class extends BaseDomElement {
     targetParent.replaceChild(newButton, target);
   }
 
-  _getButtonWrapper(){
+  _getButtonWrapper() {
     return this.document.getElementById('reminder-button-wrapper');
   }
 }

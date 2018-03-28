@@ -56,6 +56,7 @@ export default class extends BaseDomComponent {
       wrapperElement.parentNode.removeChild(wrapperElement);
 
       db.getAll((rows) => {
+        console.log(rows);
         if (Object.keys(rows).length === 0 && rows.constructor === Object) {
           const body = document.getElementById('table-scroll');
           const noData = document.getElementById('no-data');

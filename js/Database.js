@@ -14,7 +14,7 @@ export default class {
   }
 
   get(key, callback) {
-    chrome.storage.sync.get([key], callback);
+    chrome.storage.sync.get(key, callback);
   }
 
   getAll(callback) {
