@@ -53,7 +53,7 @@ export default class extends BaseDomElement {
   }
 
   /**
-   * 
+   * Render a simple button for reminder options.
    * @param {bool} isSetter 
    */
   _buttonRenderer(isSetter) {
