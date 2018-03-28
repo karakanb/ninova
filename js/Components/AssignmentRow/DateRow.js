@@ -20,8 +20,6 @@ export default class extends BaseDomElement {
     endDateDiv.classList.add('date');
     endDateDiv.textContent = this.endDate;
 
-    console.log(this.reminderSet);
-
     const buttonCol = this.newCol(7);
     const button = this.reminderSet ? this.renderRemoverButton() : this.renderSetterButton();
     buttonCol.appendChild(button);
@@ -77,20 +75,22 @@ export default class extends BaseDomElement {
    * @param {*} event 
    */
   setReminders(event) {
-    const target = event.target.parentNode;
-    const targetParent = this._getButtonWrapper();
-
-    const newButton = this.renderRemoverButton();
-    targetParent.replaceChild(newButton, target);
-
     this.db.get(this.assignmentLink, (assignment) => {
+
+      // Set the reminders.
       const assignmentInstance = Object.values(assignment)[0];
       const reminder = new ReminderSetter(assignmentInstance);
       reminder.set();
 
+      // Update the instance on storage.
       assignmentInstance.reminderSet = true;
-      const db = new Database();
-      db.set(assignmentInstance.assignmentLink, assignmentInstance);
+      this.db.set(assignmentInstance.assignmentLink, assignmentInstance);
+
+      // Update the button state.
+      const target = event.target.parentNode;
+      const targetParent = this._getButtonWrapper();
+      const newButton = this.renderRemoverButton();
+      targetParent.replaceChild(newButton, target);
     })
   }
 
@@ -99,21 +99,22 @@ export default class extends BaseDomElement {
    * @param {*} event 
    */
   removeReminders(event) {
-    const target = event.target.parentNode;
-    const targetParent = this._getButtonWrapper();
-
-    const newButton = this.renderSetterButton();
-    targetParent.replaceChild(newButton, target);
-
     this.db.get(this.assignmentLink, (assignment) => {
+
+      // Remove the reminders.
       const assignmentInstance = Object.values(assignment)[0];
       const reminder = new ReminderSetter(assignmentInstance);
       reminder.remove();
 
+      // Update the instance on persistance layer.
       assignmentInstance.reminderSet = false;
-      const db = new Database();
-      db.set(assignmentInstance.assignmentLink, assignmentInstance);
-      console.log(assignmentInstance);
+      this.db.set(assignmentInstance.assignmentLink, assignmentInstance);
+
+      // Update the button on user interface.
+      const target = event.target.parentNode;
+      const targetParent = this._getButtonWrapper();
+      const newButton = this.renderSetterButton();
+      targetParent.replaceChild(newButton, target);
     })
   }
 
