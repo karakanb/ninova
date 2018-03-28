@@ -3,11 +3,11 @@ import Database from "../../Database.js";
 import ReminderSetter from "../../Utility/ReminderSetter.js";
 
 export default class extends BaseDomElement {
-  constructor(document, startDate, endDate) {
+  constructor(document, endDate, reminderSet) {
     super(document);
-    this.startDate = startDate;
     this.endDate = endDate;
     this.db = new Database();
+    this.reminderSet = reminderSet;
   }
 
   render() {
@@ -20,8 +20,10 @@ export default class extends BaseDomElement {
     endDateDiv.classList.add('date');
     endDateDiv.textContent = this.endDate;
 
+    console.log(this.reminderSet);
+
     const buttonCol = this.newCol(7);
-    const button = this.renderSetterButton();
+    const button = this.reminderSet ? this.renderRemoverButton() : this.renderSetterButton();
     buttonCol.appendChild(button);
     buttonCol.id = 'reminder-button-wrapper';
 
@@ -33,7 +35,6 @@ export default class extends BaseDomElement {
 
     return row;
   }
-
 
   /**
    * Create and return a reminder setter button instance.
@@ -90,7 +91,6 @@ export default class extends BaseDomElement {
       assignmentInstance.reminderSet = true;
       const db = new Database();
       db.set(assignmentInstance.assignmentLink, assignmentInstance);
-      console.log(assignmentInstance);
     })
   }
 
@@ -104,6 +104,17 @@ export default class extends BaseDomElement {
 
     const newButton = this.renderSetterButton();
     targetParent.replaceChild(newButton, target);
+
+    this.db.get(this.assignmentLink, (assignment) => {
+      const assignmentInstance = Object.values(assignment)[0];
+      const reminder = new ReminderSetter(assignmentInstance);
+      reminder.remove();
+
+      assignmentInstance.reminderSet = false;
+      const db = new Database();
+      db.set(assignmentInstance.assignmentLink, assignmentInstance);
+      console.log(assignmentInstance);
+    })
   }
 
   _getButtonWrapper() {

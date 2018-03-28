@@ -11,7 +11,7 @@ export default class extends BaseDomElement {
 
     this.infoRow = new InfoRow(document, index, assignment.lesson, assignment.assignmentLink);
     this.nameRow = new NameRow(document, assignment.assignmentName, assignment.assignmentLink);
-    this.dateRow = new DateRow(document, assignment.startDate, assignment.endDate);
+    this.dateRow = new DateRow(document, assignment.endDate, assignment.reminderSet);
   }
 
   render() {

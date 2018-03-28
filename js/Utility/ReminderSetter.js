@@ -20,9 +20,19 @@ export default class {
       reminderDate.setMinutes(endDate.getDateInstance().getMinutes() - minuteDifference);
 
       // Set the alarm.
-      chrome.alarms.create(this.assignment.assignmentLink + minuteDifference, {
+      chrome.alarms.create(`${this.assignment.assignmentLink}_${minuteDifference}`, {
         when: reminderDate.getTime()
       });
+    }
+  }
+
+  remove() {
+    const endDate = new TimeParser(this.assignment.endDate);
+
+    // Create all the alarms.
+    for (let index = 0; index < this.lastNHours.length; index++) {
+      const minuteDifference = this.lastNHours[index];
+      chrome.alarms.clear(`${this.assignment.assignmentLink}_${minuteDifference}`);
     }
   }
 }
