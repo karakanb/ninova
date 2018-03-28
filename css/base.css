@@ -89,7 +89,7 @@ header {
 }
 
 .btn:hover:enabled {
-  color: white !important;
+  color: white;
   background: green;
   border-color: green;
 }

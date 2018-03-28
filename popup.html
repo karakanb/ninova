@@ -89,6 +89,7 @@
       margin-top: 10px;
       display: flex;
       align-items: center;
+      justify-content: space-around;
     }
 
     #title-wrapper {
@@ -113,26 +114,36 @@
       min-height: 223px;
     }
 
-    .set-reminder,
-    .remove-reminder {
-      font-size: 20px;
-      background: transparent;
-      border: none;
-      outline: none;
-      cursor: pointer;
+    .set-reminder {
+      color: white !important;
+      background: green;
+      border-color: green;
     }
 
-    .set-reminder:hover i {
-      color: green;
+    .set-reminder i {
+      color: white;
     }
 
-    .remove-reminder i {
-      color: green;
+    .pulse:hover,
+    .pulse:focus {
+      animation: pulse 1s;
+      box-shadow: 0 0 0 2em rgba(255, 255, 255, 0);
     }
 
-    .set-reminder i,
-    .remove-reminder i {
-      margin: 0;
+    @keyframes pulse {
+      0% {
+        -webkit-box-shadow: 0 0 0 0 var(--hover);
+        box-shadow: 0 0 0 0 var(--hover);
+      }
+    }
+
+    .pulse {
+      --hover: rgba(0, 255, 0, 0.3);
+    }
+
+    button {
+      -webkit-transition: 0.25s;
+      transition: 0.25s;
     }
   </style>
 </head>
