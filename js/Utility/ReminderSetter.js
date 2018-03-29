@@ -29,7 +29,7 @@ export default class {
    * @param {string} assignmentLink 
    */
   setNow(assignmentLink) {
-    chrome.alarms.create(`${assignmentLink}_1`, { when: Date.now() + 0.5 * 1000 });
+    chrome.alarms.create(`${assignmentLink}`, { when: Date.now() + 0.5 * 1000 });
   }
 
   /**

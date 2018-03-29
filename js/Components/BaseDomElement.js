@@ -4,6 +4,7 @@ export default class {
   constructor(document) {
     this.document = document;
     this.icon = new Icon(document);
+    this.baseUrl = 'https://ninova.itu.edu.tr';
   }
 
   /**
