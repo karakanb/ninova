@@ -21,7 +21,6 @@ export default class {
   }
 
   /**
-   * 
    * @param {Object[]} existingRows 
    * @param {Object[]} updatedRows 
    * @param {function} callback 

@@ -3,6 +3,10 @@
   "name": "Ninova Hatırlatıcı",
   "description": "Bu eklenti İTÜ Ninova sistemindeki ödevleri kullanarak Chrome bildirimleri gönderir.",
   "version": "1.0",
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": [
@@ -23,6 +27,7 @@
     "activeTab",
     "tabs",
     "storage",
-    "alarms"
+    "alarms",
+    "notifications"
   ]
 }

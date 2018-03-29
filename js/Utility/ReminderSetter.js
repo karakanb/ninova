@@ -24,6 +24,18 @@ export default class {
     }
   }
 
+  /**
+   * Name of the alarm to start with.
+   * @param {string} assignmentLink 
+   */
+  setNow(assignmentLink) {
+    chrome.alarms.create(`${assignmentLink}_1`, { when: Date.now() + 0.5 * 1000 });
+  }
+
+  /**
+   * Remove an alarm identified with its name.
+   * @param {string} assignmentLink 
+   */
   remove(assignmentLink) {
     // Create all the alarms.
     for (let index = 0; index < this.lastNHours.length; index++) {

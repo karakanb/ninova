@@ -23,7 +23,7 @@ const updateButtonState = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { from: 'popup', subject: 'DOMInfo' }, function (info) {
       const button = document.getElementById('update-button');
-      button.disabled = info ? !info.isNinova : true;
+      button.disabled = info ? !info.isNinova : true;
       if (info != null && info.isNinova) {
         button.addEventListener('click', runParser);
         button.innerHTML = '<i class="fas fa-sync-alt"></i> Update'
