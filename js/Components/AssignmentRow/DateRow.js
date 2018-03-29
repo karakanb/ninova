@@ -79,8 +79,8 @@ export default class extends BaseDomElement {
 
       // Set the reminders.
       const assignmentInstance = Object.values(assignment)[0];
-      const reminder = new ReminderSetter(assignmentInstance);
-      reminder.set();
+      const reminder = new ReminderSetter();
+      reminder.set(assignmentInstance.endDate, assignmentInstance.assignmentLink);
 
       // Update the instance on storage.
       assignmentInstance.reminderSet = true;
@@ -103,8 +103,8 @@ export default class extends BaseDomElement {
 
       // Remove the reminders.
       const assignmentInstance = Object.values(assignment)[0];
-      const reminder = new ReminderSetter(assignmentInstance);
-      reminder.remove();
+      const reminder = new ReminderSetter();
+      reminder.remove(assignmentInstance.assignmentLink);
 
       // Update the instance on persistance layer.
       assignmentInstance.reminderSet = false;

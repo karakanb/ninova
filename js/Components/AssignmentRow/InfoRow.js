@@ -1,5 +1,6 @@
 import BaseDomComponent from '../BaseDomElement.js';
 import Database from '../../Database.js';
+import ReminderSetter from '../../Utility/ReminderSetter.js';
 
 export default class extends BaseDomComponent {
 
@@ -54,6 +55,9 @@ export default class extends BaseDomComponent {
       // Remove the wrapper row.
       const wrapperElement = document.querySelectorAll(`.class-row[data-key='${keyLink}']`)[0];
       wrapperElement.parentNode.removeChild(wrapperElement);
+
+      const reminder = new ReminderSetter();
+      reminder.remove(keyLink);
 
       db.getAll((rows) => {
         console.log(rows);
