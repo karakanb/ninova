@@ -1,6 +1,7 @@
 import BaseDomElement from "../BaseDomElement.js";
 import Database from "../../Database.js";
 import ReminderSetter from "../../Utility/ReminderSetter.js";
+import Toast from "../../Utility/Toast.js";
 
 export default class extends BaseDomElement {
   constructor(document, endDate, reminderSet) {
@@ -8,6 +9,7 @@ export default class extends BaseDomElement {
     this.endDate = endDate;
     this.db = new Database();
     this.reminderSet = reminderSet;
+    this.toast = new Toast(this.document);
   }
 
   render() {
@@ -92,6 +94,8 @@ export default class extends BaseDomElement {
       const targetParent = this._getButtonWrapper();
       const newButton = this.renderRemoverButton();
       targetParent.replaceChild(newButton, target);
+
+      this.toast.make('Reminders are set successfully.', 2);
     })
   }
 

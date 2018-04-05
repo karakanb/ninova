@@ -12,7 +12,7 @@ export default class {
 
     this.tableId = 'table-scroll';
     this.errorParagraphId = 'error-message';
-    this.dom.removeItem(this.tableId);
+    this.dom.removeAllChildrenById(this.tableId);
   }
 
   fill() {

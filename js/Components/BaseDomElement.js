@@ -12,10 +12,8 @@ export default class {
    * @param {string} id 
    */
   removeItem(id) {
-    var myNode = document.getElementById(id);
-    while (myNode.firstChild) {
-      myNode.removeChild(myNode.firstChild);
-    }
+    const myNode = document.getElementById(id);
+    myNode.parentElement.removeChild(myNode);
   }
 
   /**
@@ -26,6 +24,15 @@ export default class {
     while (item.firstChild) {
       item.removeChild(item.firstChild);
     }
+  }
+
+  /**
+   * Remove all children of the given HTML element.
+   * @param {HTMLElement} item 
+   */
+  removeAllChildrenById(id) {
+    const myNode = document.getElementById(id);    
+    this.removeAllChildren(myNode);
   }
 
   /**

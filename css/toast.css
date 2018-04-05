@@ -1,0 +1,20 @@
+.toast-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.toast {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  z-index: 2;
+}
+
+.toast.animate {
+  height: 0px;
+  transition: height 1s;
+}
