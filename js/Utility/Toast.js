@@ -17,6 +17,7 @@ export default class extends BaseDomElement {
     console.log('generated random: ' + randomId);
 
     const wrapper = this.document.getElementById('toast-wrapper');
+    this.removeAllChildren(wrapper);
 
     const messageDiv = this.newDiv('toast');
     messageDiv.textContent = message;

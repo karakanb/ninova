@@ -120,6 +120,8 @@ export default class extends BaseDomElement {
       const targetParent = this._getButtonWrapper();
       const newButton = this.renderSetterButton();
       targetParent.replaceChild(newButton, target);
+
+      this.toast.make('Reminders are removed successfully.', 2);      
     })
   }
 
