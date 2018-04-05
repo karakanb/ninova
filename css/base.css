@@ -155,3 +155,7 @@ footer a:hover {
   text-align: right;
   color: #f56767;
 }
+
+button i {
+  color: inherit !important;
+}
