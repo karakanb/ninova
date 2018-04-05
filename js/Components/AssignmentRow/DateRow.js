@@ -93,6 +93,7 @@ export default class extends BaseDomElement {
       const assignmentInstance = Object.values(assignment)[0];
       const reminder = new ReminderSetter();
       reminder.set(assignmentInstance.endDate, assignmentInstance.assignmentLink);
+      reminder.setNow(assignmentInstance.assignmentLink);
 
       // Update the instance on storage.
       assignmentInstance.reminderSet = true;

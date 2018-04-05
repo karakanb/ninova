@@ -32,12 +32,7 @@ function sendNotification(assignment) {
     iconUrl: '../icon.png',
     title: assignment.assignmentName,
     contextMessage: assignment.lesson,
-    message: assignment.endDate,
-    buttons: [
-      {
-        title: "Visit",
-      }
-    ]
+    message: assignment.endDate
   };
 
   console.log(notificationObject);
