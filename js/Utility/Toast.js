@@ -8,26 +8,28 @@ export default class extends BaseDomElement {
   }
 
   /**
-   * Display a new toast.
+   * Display a new toast for the given timeout.
    * @param {string} message 
    * @param {int} timeout 
    */
   make(message, timeout) {
-    const randomId = Random.random(20);
-    console.log('generated random: ' + randomId);
 
+    // Generate a random id to identify the toast div.
+    const randomId = Random.random(20);
+
+    // Get and clean the toast wrapper.
     const wrapper = this.document.getElementById('toast-wrapper');
     this.removeAllChildren(wrapper);
 
+    // Construct the toast message.
     const messageDiv = this.newDiv('toast');
     messageDiv.textContent = message;
     messageDiv.id = randomId;
 
+    // Append the toast to the wrapper.
     wrapper.appendChild(messageDiv)
 
-    setTimeout(() => {
-      const item = this.document.getElementById(randomId);
-      this.removeItem(randomId);
-    }, timeout * 1000);
+    // Remove the toast after timout seconds.
+    setTimeout(() => { this.removeItem(randomId); }, timeout * 1000);
   }
 }
