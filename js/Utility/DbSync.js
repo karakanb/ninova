@@ -27,7 +27,7 @@ export default class {
    */
   __syncGiven(existingRows, updatedRows, callback = () => { }) {
     for (const row of updatedRows) {
-      if (!existingRows.hasOwnProperty(updatedRows.assignmentLink)) {
+      if (!existingRows.hasOwnProperty(row.assignmentLink)) {
         this.db.set(row.assignmentLink, row, callback);
       }
     }

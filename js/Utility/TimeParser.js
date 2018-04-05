@@ -51,4 +51,8 @@ export default class {
   getDateInstance() {
     return this.dateInstance;
   }
+
+  isOlderThanNow() {
+    return this.toTimestamp() < Date.now();
+  }
 }

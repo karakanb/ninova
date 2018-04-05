@@ -2,6 +2,7 @@ import BaseDomElement from "../BaseDomElement.js";
 import Database from "../../Database.js";
 import ReminderSetter from "../../Utility/ReminderSetter.js";
 import Toast from "../../Utility/Toast.js";
+import TimeParser from "../../Utility/TimeParser.js";
 
 export default class extends BaseDomElement {
   constructor(document, endDate, reminderSet) {
@@ -23,7 +24,16 @@ export default class extends BaseDomElement {
     endDateDiv.textContent = this.endDate;
 
     const buttonCol = this.newCol(7);
-    const button = this.reminderSet ? this.renderRemoverButton() : this.renderSetterButton();
+
+    // Check if the deadline is already passed.
+    const tp = new TimeParser(this.endDate);
+    
+    let button = this.newDiv('too-late-message');
+    button.textContent = 'Deadline passed.';
+    if (!tp.isOlderThanNow()) {
+      button = this.reminderSet ? this.renderRemoverButton() : this.renderSetterButton();
+    }
+
     buttonCol.appendChild(button);
     buttonCol.id = 'reminder-button-wrapper';
 
@@ -83,7 +93,6 @@ export default class extends BaseDomElement {
       const assignmentInstance = Object.values(assignment)[0];
       const reminder = new ReminderSetter();
       reminder.set(assignmentInstance.endDate, assignmentInstance.assignmentLink);
-      //reminder.setNow(assignmentInstance.assignmentLink);
 
       // Update the instance on storage.
       assignmentInstance.reminderSet = true;
@@ -121,7 +130,7 @@ export default class extends BaseDomElement {
       const newButton = this.renderSetterButton();
       targetParent.replaceChild(newButton, target);
 
-      this.toast.make('Reminders are removed successfully.', 2);      
+      this.toast.make('Reminders are removed successfully.', 2);
     })
   }
 

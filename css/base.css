@@ -150,3 +150,8 @@ footer a:hover~#footer-icon {
 footer a:hover {
   text-decoration: underline;
 }
+
+.too-late-message {
+  text-align: right;
+  color: #f56767;
+}
